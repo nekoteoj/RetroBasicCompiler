@@ -25,7 +25,7 @@ v10.12.0
 
 ## Usage
 
-You can call the compiler by using following syntax.
+You can call the compiler by using following syntax. The output file will be the same as source code with ".out.txt".
 
 ```sh
 node compiler.js "path to your source code"
