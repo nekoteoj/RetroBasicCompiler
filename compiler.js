@@ -91,7 +91,7 @@ const isSameTerminal = (token, topOfStack) => {
 
 const getRule = (stackTop, token) => {
     const tokenType = getTerminalType(token);
-    console.log(stackTop, token);
+    // console.log(stackTop, token);
     if (tokenType === "number") {
         if (parsingTable[stackTop].line_num) {
             return parsingTable[stackTop].line_num;
@@ -142,17 +142,17 @@ const bcodes = [];
 // Parsing stream of tokens
 for (const token of tokens) {
     while (!isSameTerminal(token, stack[stack.length - 1])) {
-        console.log("Current Stack: ", stack);
-        console.log("Current token: ", token);
+        // console.log("Current Stack: ", stack);
+        // console.log("Current token: ", token);
         const stackTop = stack.pop();
         if (isTerminal(stackTop)) {
             throw new Error(`Compilation Error: ${stackTop} is unexpected!`);
         }
         const rule = getRule(stackTop, token);
         if (nextSet[rule] && nextSet[rule].length !== 0) {
-            console.log("Reverse Rules: ", nextSet[rule].slice().reverse());
+            // console.log("Reverse Rules: ", nextSet[rule].slice().reverse());
             stack.push(...nextSet[rule].slice().reverse());
-            console.log("After push: ", stack);
+            // console.log("After push: ", stack);
         }
     }
     if (
@@ -164,15 +164,15 @@ for (const token of tokens) {
     if (stack[stack.length - 1] == "const" && (+token < 0 || +token > 100)) {
         throw new Error("Compilation Error: Const value not in range");
     }
-    console.log("Match: ", token, stack[stack.length - 1]);
+    // console.log("Match: ", token, stack[stack.length - 1]);
     parseTokens.push(stack.pop());
 }
 
-console.log(parseTokens);
+// console.log(parseTokens);
 
 // Convert to bcode
 for (const i in tokens) {
-    console.log(i, ":", tokens[i], ":", parseTokens[i]);
+    // console.log(i, ":", tokens[i], ":", parseTokens[i]);
     // special if goto case
     if (
         parseTokens[i] === "line_num" &&
@@ -187,7 +187,7 @@ for (const i in tokens) {
     }
 }
 
-console.log(bcodes);
+// console.log(bcodes);
 
 fs.writeFileSync(process.argv[2] + ".out.txt", bcodes.join(" "));
-console.log("Compile Successful!");
+console.log("Compile Successful!, output: " + process.argv[2] + ".out.txt");
