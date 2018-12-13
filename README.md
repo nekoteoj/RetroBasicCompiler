@@ -4,7 +4,7 @@ A part pf Programming Principle Project
 -----
 
 ## Introduction
-This is a compiler for Retro Basic language written in javascript language on Node.js emvironment using LL(1) parser as a final project for programming principle subject.
+This is a compiler for Retro Basic language written in javascript language on Node.js environment using LL(1) parser as a final project for programming principle subject.
 
 ## Prerequisite
 
