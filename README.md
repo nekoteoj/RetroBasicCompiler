@@ -17,7 +17,7 @@ You can check correct installation of Node.js by using following command.
 node -v
 ```
 
-There should be an output like if the installation is correct.
+There should be an output tell the installed Node.js version if the installation is correct.
 
 ```
 v10.12.0
